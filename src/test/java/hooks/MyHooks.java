@@ -1,9 +1,11 @@
 package hooks;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Options;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -14,6 +16,8 @@ import base.PageContext;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
 
 public class MyHooks {
     
@@ -34,9 +38,12 @@ public class MyHooks {
 	
 	@Before(order = 1)
 	public void beforeScenario(Scenario scenario) {
+		WebDriver driver;
+		Duration timeout = Duration.ofSeconds(10);
+		WebDriverManager.chromedriver().setup();
 		System.out.println("Im in beforeScenario");
-		RemoteWebDriver driver = new ChromeDriver();
-		WebDriverWait wait= new WebDriverWait(driver, 10);
+		driver = new ChromeDriver();
+		WebDriverWait wait= new WebDriverWait(driver,timeout);
 		context.setDriver(driver);
 		context.setWait(wait);
 		context.getDriver().get("https://bookcart.azurewebsites.net/"); 
@@ -51,8 +58,9 @@ public class MyHooks {
 		boolean failed = scenario.isFailed();
 		System.out.println("is Failed? "+failed);
 		if(!failed) {
-			byte[] screenshotAs = context.getDriver().getScreenshotAs(OutputType.BYTES);
-			scenario.embed(screenshotAs, "image/png");
+//			byte[] screenshotAs = context.getDriver().getScreenshotAs(OutputType.BYTES);
+//			scenario.embed(screenshotAs, "image/png");
+			System.out.println("failed");
 		}
 		context.getDriver().quit();
 	}	

@@ -2,15 +2,20 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>CucumberWithSeleniumFramework</groupId>
-	<artifactId>CucumberWithSeleniumFramework</artifactId>
+	<groupId>letcode</groupId>
+	<artifactId>letcodeCucumber</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>CucumberWith SeleniumFramework</name>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>3.141.59</version>
+			<version>4.10.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.5.0</version>
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -43,4 +48,6 @@
 			<version>4.2.2</version>
 		</dependency>
 	</dependencies>
+
+
 </project>
